@@ -1,0 +1,66 @@
+<script>
+  document
+    .getElementById("updateProductForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent default form submission
+      console.log("clicked");
+      // Form validation
+      let nameEle = document.getElementById("name");
+      let descriptionEle = document.getElementById("description");
+      let priceEle = document.getElementById("price");
+      let catagoryEle = document.getElementById("category");
+      let quantityEle = document.getElementById("quantity");
+
+      let name = nameEle.value;
+      let description = descriptionEle.value;
+      let price = priceEle.value;
+      let catagory = catagoryEle.value;
+      let quantity = quantityEle.value;
+
+      if (!name || !price || !catagory || !quantity) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const pathName = window.location.pathname;
+
+      const pathArray = pathName.split("/");
+      const id = pathArray[pathArray.length - 1];
+
+      console.log(id);
+
+      // Form data
+      const formData = {
+        name: name,
+        price: price * 1,
+        catagory: catagory,
+        quantity: quantity * 1,
+        description: description,
+      };
+
+      // Sending data to the backend
+      fetch(`http://localhost:3000/api/products/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Product updated successfully:", data);
+          alert("Product updated successfully!");
+          // You can redirect or do any additional actions here
+          window.location.href = '/';
+        })
+        .catch((error) => {
+          console.error("Error adding product:", error);
+          alert("Error adding product. Please try again later.",);
+        });
+    });
+</script>

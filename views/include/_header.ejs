@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <style>
+      /* Optional additional styling */
+      table {
+        /* border-collapse: collapse; */
+        
+        width: 100%;
+        border: none;
+      }
+      
+      thead th {
+        color: #f2f2f2;
+        background-color: rgb(50, 110, 175);
+      }
+      
+      th,
+      td {
+        
+        /* border: 1px solid #ddd; */
+        padding: 8px;
+        text-align: center;
+      }
+
+      tbody tr {
+        
+        background-color: rgb(235, 235, 235);
+      }
+      tbody tr td{
+        border-radius: 20px;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      .editButton,.deleteButton{
+        position: relative;
+        width: 24px;
+        height:  24px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.155);
+        border-radius: 5px;
+        transition: all ease-in-out 0.2s;
+      }
+
+      .editButton:hover{
+        background: rgb(135, 174, 190);
+        color: white;
+        transform: scale(1.2);
+      }
+      .deleteButton:hover{
+        background: rgb(255, 83, 83);
+        color: white;
+        transform: scale(1.2);
+      }
+
+      .editButton::before,.deleteButton::before{
+        transform: scale(0);
+        position: absolute;
+        background: rgba(0, 0, 0, 0.568);
+        color: white;
+        font-size: 10px;
+        bottom: 100%;
+        padding: 2.5px 5px;
+        border-radius: 5px;
+        transition: all ease-in-out .2s ;
+        transform-origin: bottom;
+      }
+      
+      .editButton::before{
+        content: 'Edit';
+      }
+      .deleteButton::before{
+        content: 'delete';
+      }
+      
+      .editButton:hover::before,.deleteButton:hover::before{
+        transform: scale(1);
+        /* transform-origin: bottom; */
+      }
+
+
+      @media (max-width: 768px) {
+        .hidden.md\:block {
+          display: none;
+        }
+      }
+    </style>
+    <title>Crud Application</title>
+  </head>
+  <body class="bg-slate-200">
+    <header id="header" class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-b-lg text-white min-h-20 mx-auto shadow-lg mb-4">
+      <nav
+        class="container max-w-[1440px] mx-auto h-full flex item-center justify-center"
+      >
+        <a href="/" class="uppercase font-bold  text-2xl pt-6">
+          Product Crud Application</a
+        >
+      </nav>
+    </header>
+  </body>
+</html>

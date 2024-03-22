@@ -1,0 +1,33 @@
+
+
+<tbody>
+
+    <% products.forEach((product,index)=> { %>
+
+        <tr>
+            <td class="border px-4 py-2"> <%= index+1 %> </td>
+            <td class="border px-4 py-2"><%= product.name %></td>
+            <td class="border px-4 py-2"><%= product.catagory %></td>
+            <td class="border px-4 py-2"><%= product.price %></td>
+            <td class="border px-4 py-2"><%= product.quantity %></td>
+            
+            <td class="border px-4 py-2 md:space-x-4 "> 
+                <button class="editButton " data-id="<%= product.id%>" class="bg-red-400">
+                    <ion-icon name="pencil-outline" class="inline-block" ></ion-icon>
+                </button>
+                <button class="deleteButton" data-id="<%= product.id%>" class="inline-block border-2 border-slate-400 bg-slate-200 rounded-md  p-1 text-center w-8 h-8  hover:text-white hover:bg-blue-300 transition-all active:scale-95 ">
+                    <ion-icon name="trash-bin-outline" class="inline-block" ></ion-icon>
+                </button>
+            </td>
+          </tr>
+
+
+        <%})%>
+
+    
+    
+  </tbody>
+</table>
+</div>
+</div>
+</main>
