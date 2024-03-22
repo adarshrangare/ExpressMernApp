@@ -1,18 +1,13 @@
 const Product = require("../models/productModel");
 
 const createProduct = async (req, res) => {
-  if (!req.body) {
-    return res
-      .status(400)
-      .json({ status: "failed", message: "Data is missing" });
-  }
-
+  
   try {
     const { name, catagory, price, quantity, description } = req.body;
 
     if (!name && !catagory && !price && !quantity) {
       return res
-        .status(401)
+        .status(400)
         .json({ status: "failed", message: "All fields are required" });
     }
 
@@ -23,7 +18,7 @@ const createProduct = async (req, res) => {
       quantity,
       description,
     });
-
+    console.log("create Product");
     let product = await Product.create(newProduct);
     return res.status(201).json({
       status: "success",
@@ -43,17 +38,20 @@ const updateProduct = async (req, res) => {
     const { name, catagory, price, quantity, description } = req.body;   
 
     const id = req.params.id;
-
+      
       if (id?.length != 24) {
-        throw new Error("Invalid  ID");
+        return res.status(404).json({
+          status:"failed",
+          message : "No product with the given ID was found."
+      })
       }
 
       const newData = { name, catagory, price, quantity, description };
-
+      
       const product = await Product.findByIdAndUpdate(id, { $set: newData }, { new: true })
       if(!product){
         return res.status(404).json({
-            status:"fail",
+            status:"failed",
             message : "No product with the given ID was found."
         })
     }
@@ -81,14 +79,17 @@ const deleteProduct = async (req, res) => {
 
   try {
       if (id?.length != 24) {
-        throw new Error("Invalid  ID");
+        return res.status(404).json({
+          status:"failed",
+          message : "No product with the given ID was found."
+      })
       }
 
       const product = await Product.findByIdAndDelete(id);
       
       if(!product){
           return res.status(404).json({
-              status:"fail",
+              status:"failed",
               message : "No product with the given ID was found."
           })
       }
@@ -119,7 +120,10 @@ const findProduct = async (req, res) => {
   try {
     if (id) {
       if (id.length != 24) {
-        throw new Error("Invalid  ID");
+        return res.status(404).json({
+          status: "failed",
+          message: `No product with the id ${id}`,
+        });
       }
       //find the product by its ID
       const product = await Product.findById(id);
