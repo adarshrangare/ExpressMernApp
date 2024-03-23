@@ -1,5 +1,5 @@
 <script>
-  const PORT = 3000 
+  
 
   const editButtons = document.querySelectorAll(".editButton");
   const deleteButtons = document.querySelectorAll(".deleteButton");
@@ -26,7 +26,7 @@
       
       
 
-      fetch(`http://localhost:${PORT}/api/products/${id}`, {
+      fetch(`https://expresscrudapp.onrender.com/api/products/${id}`, {
         method: "DELETE",
       }).then((res) => {
         console.log("Product Deleted Succesfully");
