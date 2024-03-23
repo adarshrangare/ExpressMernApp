@@ -1,5 +1,5 @@
 <script>
-  const PORT = 3000 
+  
   document
     .getElementById("updateProductForm")
     .addEventListener("submit", function (event) {
@@ -40,7 +40,7 @@
       };
 
       // Sending data to the backend
-      fetch(`http://localhost:${PORT}/api/products/${id}`, {
+      fetch(`https://expresscrudapp.onrender.com/api/products/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
