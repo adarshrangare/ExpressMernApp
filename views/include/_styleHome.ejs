@@ -1,0 +1,82 @@
+<style>
+    table {
+      width: 100%;
+      border: none;
+    }
+
+    thead th {
+      color: #f2f2f2;
+      background-color: rgb(50, 110, 175);
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: center;
+    }
+
+    tbody tr {
+      background-color: rgb(235, 235, 235);
+    }
+    tbody tr td {
+      border-radius: 20px;
+      border: none;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .editButton,
+    .deleteButton {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.155);
+      border-radius: 5px;
+      transition: all ease-in-out 0.2s;
+    }
+
+    .editButton:hover {
+      background: rgb(135, 174, 190);
+      color: white;
+      transform: scale(1.2);
+    }
+    .deleteButton:hover {
+      background: rgb(255, 83, 83);
+      color: white;
+      transform: scale(1.2);
+    }
+
+    .editButton::before,
+    .deleteButton::before {
+      transform: scale(0);
+      position: absolute;
+      background: rgba(0, 0, 0, 0.568);
+      color: white;
+      font-size: 10px;
+      bottom: 100%;
+      padding: 2.5px 5px;
+      border-radius: 5px;
+      transition: all ease-in-out 0.2s;
+      transform-origin: bottom;
+    }
+
+    .editButton::before {
+      content: "Edit";
+    }
+    .deleteButton::before {
+      content: "delete";
+    }
+
+    .editButton:hover::before,
+    .deleteButton:hover::before {
+      transform: scale(1);
+    }
+
+    @media (max-width: 768px) {
+      .hidden.md\:block {
+        display: none;
+      }
+    }
+  </style>

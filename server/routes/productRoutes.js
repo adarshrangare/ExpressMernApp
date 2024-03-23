@@ -5,20 +5,17 @@ const {homeRoutes,addProductRoutes,updateProductRoutes} = require('../services/r
 
 const {createProduct, updateProduct,deleteProduct,findProduct}= require("../controllers/productController")
 
-route.get("/", homeRoutes);
+// Routes for rendering views
+route.get("/", homeRoutes); // Homepage
+route.get("/addProduct", addProductRoutes); // Add Product page
+route.get("/updateProduct/:id", updateProductRoutes); // Update Product page
 
-route.get("/addProduct",addProductRoutes);
-
-route.get("/updateProduct/:id",updateProductRoutes);
-
-// APIs
-
-route.get( "/api/products" , findProduct) 
-route.get( "/api/products/:id" , findProduct) 
-route.post( "/api/products" , createProduct) 
-route.put( "/api/products/:id" , updateProduct) 
-route.delete( "/api/products/:id" , deleteProduct) 
-
+// API routes for CRUD operations on products
+route.get("/api/products", findProduct); // Get all products
+route.get("/api/products/:id", findProduct); // Get a product by id
+route.post("/api/products", createProduct); // Create a new product
+route.put("/api/products/:id", updateProduct); // Update a product
+route.delete("/api/products/:id", deleteProduct); // Delete a product
 
 
 module.exports = route;

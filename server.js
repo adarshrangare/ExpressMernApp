@@ -1,39 +1,38 @@
-const dotenv = require("dotenv");
-dotenv.config();
-const morgan = require("morgan");
-const path = require('path');
+// Importing required modules
+const dotenv = require("dotenv"); // for loading environment variables
+dotenv.config(); // configuring dotenv
 
-const express = require(`express`);
-const app = express();
+const morgan = require("morgan"); // for logging requests
+const path = require('path'); // for handling file paths
 
-const productRouter = require('./server/routes/productRoutes')
+const express = require(`express`); // for creating the web server
+const app = express(); // creating an instance of express
 
-// database
-require('./dbConnection')
+// Importing product router
+const productRouter = require('./server/routes/productRoutes');
 
-// log request
-app.use(morgan("tiny"))
+// Importing and configuring the database
+require('./dbConnection');
 
+// Logging requests in a compact format
+app.use(morgan("tiny"));
 
-// parse Request
+// Parsing incoming JSON and url-encoded data
 app.use(express.json());
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}));
 
-// setting view Engine
+// Setting up the view engine to be EJS
 app.set('view engine', 'ejs');
 // app.set('views',path.resolve(__dirname,"views"));
 
-// loading asests
-app.use('/css', express.static(path.resolve(__dirname,"asests/css")))
-app.use('/images', express.static(path.resolve(__dirname,"asests/images")))
-app.use('/js', express.static(path.resolve(__dirname,"asests/js")))
+// Using the product router
+app.use('/',productRouter);
 
-app.use('/',productRouter)
-
-
-
+// Setting the port for the server to listen on
 const PORT = process.env.PORT || 3001;
 
+// Starting the server and listening on the specified port
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
+// Exporting the app object for use in other parts of the application
 module.exports = app;
